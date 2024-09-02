@@ -1,0 +1,4 @@
+enum TranslationElementType {
+  literal,
+  placeholder,
+}

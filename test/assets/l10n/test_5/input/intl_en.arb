@@ -1,0 +1,8 @@
+{
+    "@@locale": "en",
+    "hello": "Hello world",
+    "@hello": {
+        "description": "Simple hello world"
+    },
+    "title": "Title"
+}

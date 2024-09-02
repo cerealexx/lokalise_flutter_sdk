@@ -1,0 +1,12 @@
+{
+    "@@locale": "en",
+    "hello": "Hello world on {date}",
+    "@hello": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    }
+}

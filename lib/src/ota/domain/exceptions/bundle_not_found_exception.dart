@@ -1,0 +1,1 @@
+class BundleNotFoundException implements Exception {}
