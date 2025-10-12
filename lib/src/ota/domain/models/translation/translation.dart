@@ -19,8 +19,6 @@ abstract class Translation implements JsonSerializable {
         return SimpleTranslation.fromJson(json: json);
       case TranslationType.plural:
         return PluralTranslation.fromJson(json: json);
-      default:
-        return null;
     }
   }
 

@@ -97,6 +97,104 @@ void main() {
           .called(1);
     });
 
+    test('locale resolution - respect full locale match', () {
+      // Given
+      const key = 'test';
+      const locale = 'zh_Hant_HK';
+      proxy.bundle = Bundle(
+        projectId: 'test',
+        translationVersion: 0,
+        appVersion: '0',
+        languageBundles: [
+          LanguageBundle(locale: 'zh', translations: {}),
+          LanguageBundle(locale: 'zh_Hant', translations: {}),
+          LanguageBundle(locale: 'zh_HK', translations: {}),
+          LanguageBundle(locale: 'zh_Hant_HK', translations: {
+            key: SimpleTranslation(
+                elements: [TranslationElement.literal(value: 'works')])
+          })
+        ],
+      );
+
+      // When
+      final res = proxy.lookupMessage(null, locale, key, null, null);
+
+      // Then
+      expect(res, equals('works'));
+    });
+
+    test('locale resolution - fallback to language_script', () {
+      // Given
+      const key = 'test';
+      const locale = 'zh_Hant_HK';
+      proxy.bundle = Bundle(
+        projectId: 'test',
+        translationVersion: 0,
+        appVersion: '0',
+        languageBundles: [
+          LanguageBundle(locale: 'zh', translations: {}),
+          LanguageBundle(locale: 'zh_HK', translations: {}),
+          LanguageBundle(locale: 'zh_Hant', translations: {
+            key: SimpleTranslation(
+                elements: [TranslationElement.literal(value: 'works')])
+          }),
+        ],
+      );
+
+      // When
+      final res = proxy.lookupMessage(null, locale, key, null, null);
+
+      // Then
+      expect(res, equals('works'));
+    });
+
+    test('locale resolution - fallback to language_country', () {
+      // Given
+      const key = 'test';
+      const locale = 'zh_Hant_HK';
+      proxy.bundle = Bundle(
+        projectId: 'test',
+        translationVersion: 0,
+        appVersion: '0',
+        languageBundles: [
+          LanguageBundle(locale: 'zh', translations: {}),
+          LanguageBundle(locale: 'zh_HK', translations: {
+            key: SimpleTranslation(
+                elements: [TranslationElement.literal(value: 'works')])
+          }),
+        ],
+      );
+
+      // When
+      final res = proxy.lookupMessage(null, locale, key, null, null);
+
+      // Then
+      expect(res, equals('works'));
+    });
+
+    test('locale resolution - fallback to lang code', () {
+      // Given
+      const key = 'test';
+      const locale = 'zh_Hant_HK';
+      proxy.bundle = Bundle(
+        projectId: 'test',
+        translationVersion: 0,
+        appVersion: '0',
+        languageBundles: [
+          LanguageBundle(locale: 'zh', translations: {
+            key: SimpleTranslation(
+                elements: [TranslationElement.literal(value: 'works')])
+          }),
+        ],
+      );
+
+      // When
+      final res = proxy.lookupMessage(null, locale, key, null, null);
+
+      // Then
+      expect(res, equals('works'));
+    });
+
     test('key is not in the lang translations', () {
       // Given
       const locale = 'lv';

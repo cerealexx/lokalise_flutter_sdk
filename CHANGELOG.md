@@ -1,3 +1,42 @@
+## 3.0.0
+### Breaking Changes
+- The SDK now requires `package_info_plus 9.0.0`
+- The SDK now requires `dart_style 3.0.0`
+- The SDK now requires `petitparser 7.0.0`
+
+### New
+- The SDK is now compatible with `intl_translation 0.21.0`
+
+
+## 2.1.0
+### New
+- The SDK is now compatible with `petitparser 7`.
+
+
+## 2.0.0
+### Breaking Changes
+- The SDK now requires Dart 3
+- The SDK now requires Flutter 3
+
+
+## 1.3.4
+### New
+- The SDK is now compatible with `intl 0.20.0`
+- The SDK is now compatible with `archive 4.0.0`
+
+### Reminder
+- On next major release the SDK will require Dart 3 and Flutter 3
+
+
+## 1.3.3
+### Fixes
+- Fixed an issue that produce the remote bundles to not be used due
+ to an error on selected locale resolution
+
+### Reminder
+- On next major release the SDK will require Dart 3 and Flutter 3
+
+
 ## 1.3.2
 ### Fixes
 - Fixed an issue that produce an error log on web platform

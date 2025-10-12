@@ -23,7 +23,7 @@ void main() {
       final bundleDownloader = BundleDownloaderClient(
         httpClient: getMockClient(
           resourceUrl,
-          zipEncoder.encode(Archive())!,
+          zipEncoder.encodeBytes(Archive()),
           200,
         ),
         zipDecoder: ZipDecoder(),

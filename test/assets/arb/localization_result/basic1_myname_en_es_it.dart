@@ -26,16 +26,16 @@ class myname {
   static const List<Locale> supportedLocales = [
     Locale.fromSubtags(languageCode: 'en'),
     Locale.fromSubtags(languageCode: 'es'),
-    Locale.fromSubtags(languageCode: 'it')
+    Locale.fromSubtags(languageCode: 'it'),
   ];
 
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   static final Map<String, List<String>> _metadata = {'hello': [], 'title': []};
 
@@ -55,29 +55,21 @@ class myname {
 
   static myname of(BuildContext context) {
     final instance = Localizations.of<myname>(context, myname);
-    assert(instance != null,
-        'No instance of myname present in the widget tree. Did you add myname.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of myname present in the widget tree. Did you add myname.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
   /// `Hello world`
   String get hello {
-    return Intl.message(
-      'Hello world',
-      name: 'hello',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Hello world', name: 'hello', desc: '', args: []);
   }
 
   /// `Title`
   String get title {
-    return Intl.message(
-      'Title',
-      name: 'title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Title', name: 'title', desc: '', args: []);
   }
 }
 
@@ -86,7 +78,8 @@ class _AppLocalizationDelegate extends LocalizationsDelegate<myname> {
 
   @override
   bool isSupported(Locale locale) => myname.supportedLocales.any(
-      (supportedLocale) => supportedLocale.languageCode == locale.languageCode);
+    (supportedLocale) => supportedLocale.languageCode == locale.languageCode,
+  );
 
   @override
   Future<myname> load(Locale locale) => myname.load(locale);

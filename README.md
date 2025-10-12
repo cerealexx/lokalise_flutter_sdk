@@ -38,7 +38,7 @@ dependencies:
   flutter_localizations:        # Add this line
     sdk: flutter                # Add this line   
   intl: any                     # Add this line 
-  lokalise_flutter_sdk: ^1.3.0  # Add this line
+  lokalise_flutter_sdk: ^3.0.0  # Add this line
 ```
 
 And enable the `generate` flag, it is found in the flutter section:

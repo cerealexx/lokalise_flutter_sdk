@@ -200,13 +200,12 @@ void main() {
 
 String _toYaml(Map<String, dynamic> map) {
   final result = map.entries.map((entry) {
-    switch (entry.value.runtimeType) {
-      case String:
-        return '${entry.key}: ${entry.value}';
-      case bool:
-        return '${entry.key}: ${entry.value ? 'true' : 'false'}';
-      case List<String>:
-        return '${entry.key}: [${entry.value.join(', ')}]';
+    if (entry.value is bool) {
+      return '${entry.key}: ${entry.value ? 'true' : 'false'}';
+    } else if (entry.value is List<String>) {
+      return '${entry.key}: [${entry.value.join(', ')}]';
+    } else {
+      return '${entry.key}: ${entry.value}';
     }
   });
 

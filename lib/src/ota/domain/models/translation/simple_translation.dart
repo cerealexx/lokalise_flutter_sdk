@@ -35,8 +35,6 @@ class SimpleTranslation extends Translation {
           return e.value;
         case TranslationElementType.placeholder:
           return args[e.value];
-        default:
-          return null;
       }
     });
 

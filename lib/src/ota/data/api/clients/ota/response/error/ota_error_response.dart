@@ -15,8 +15,8 @@ class OtaErrorResponse implements JsonSerializable {
   });
 
   /// The OTA api has an issue and right now the error parameter can be
-  /// an String or a List<String>, for now we only parse it if it is a
-  /// List<String>, in other case we ignore it to avoid casting and
+  /// an String or a List&lt;String&gt;, for now we only parse it if it is a
+  /// List&lt;String&gt;, in other case we ignore it to avoid casting and
   /// typing errors.
   factory OtaErrorResponse.fromJson({required Map<String, dynamic> json}) {
     _validateJson(json);

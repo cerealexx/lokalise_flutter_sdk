@@ -28,4 +28,8 @@ class Bundle {
     required this.appVersion,
   })  : translationVersion = 0,
         languageBundles = [];
+
+  bool get isEmpty => languageBundles.isEmpty;
+
+  bool get isNotEmpty => languageBundles.isNotEmpty;
 }

@@ -2,7 +2,7 @@
 // This is a library that provides messages for a es locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
-
+// @dart=2.12
 // Ignore issues from commonly used lints in this file.
 // ignore_for_file:unnecessary_brace_in_string_interps
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final Map<String, dynamic> messages =
       _notInlinedMessages(_notInlinedMessages);
 
-  static Map<String, dynamic> _notInlinedMessages(_) => {
+  static Map<String, dynamic> _notInlinedMessages(Object? _) => {
         'hello': MessageLookupByLibrary.simpleMessage('Hola mundo'),
         'title': MessageLookupByLibrary.simpleMessage('Titulo')
       };

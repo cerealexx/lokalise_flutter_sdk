@@ -25,16 +25,16 @@ class Custom {
 
   static const List<Locale> supportedLocales = [
     Locale.fromSubtags(languageCode: 'en'),
-    Locale.fromSubtags(languageCode: 'es')
+    Locale.fromSubtags(languageCode: 'es'),
   ];
 
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   static final Map<String, List<String>> _metadata = {'hello': [], 'title': []};
 
@@ -54,8 +54,10 @@ class Custom {
 
   static Custom of(BuildContext context) {
     final instance = Localizations.of<Custom>(context, Custom);
-    assert(instance != null,
-        'No instance of Custom present in the widget tree. Did you add Custom.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of Custom present in the widget tree. Did you add Custom.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -71,12 +73,7 @@ class Custom {
 
   /// `Title`
   String get title {
-    return Intl.message(
-      'Title',
-      name: 'title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Title', name: 'title', desc: '', args: []);
   }
 }
 
@@ -85,7 +82,8 @@ class _AppLocalizationDelegate extends LocalizationsDelegate<Custom> {
 
   @override
   bool isSupported(Locale locale) => Custom.supportedLocales.any(
-      (supportedLocale) => supportedLocale.languageCode == locale.languageCode);
+    (supportedLocale) => supportedLocale.languageCode == locale.languageCode,
+  );
 
   @override
   Future<Custom> load(Locale locale) => Custom.load(locale);

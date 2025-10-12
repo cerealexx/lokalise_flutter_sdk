@@ -4,5 +4,5 @@ class Class {
 
   Class({required String text}) : _text = text;
 
-  get text => _text;
+  String get text => _text;
 }

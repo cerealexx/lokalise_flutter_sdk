@@ -39,7 +39,7 @@ class OtaErrorInfo implements JsonSerializable {
         'received': received,
       };
 
-  static _validateJson(Map<String, dynamic> json) {
+  static void _validateJson(Map<String, dynamic> json) {
     final List<ValidationError> errors = [];
 
     if (json['code'] is! String) {

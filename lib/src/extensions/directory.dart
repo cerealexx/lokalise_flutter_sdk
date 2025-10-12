@@ -11,7 +11,7 @@ extension DirectoryUtils on Directory {
     return create(recursive: true);
   }
 
-  Future<Directory> createSubdirectory({required withName}) async {
+  Future<Directory> createSubdirectory({required String withName}) async {
     final subDir = Directory(join(path, withName));
     if (subDir.existsSync()) {
       return subDir;
@@ -25,12 +25,13 @@ extension DirectoryUtils on Directory {
         (FileSystemEntity e) async => await e.delete(recursive: true),
       );
 
-  File? getFile({required withName}) {
+  File? getFile({required String withName}) {
     final file = File(join(path, withName));
     return file.existsSync() ? file : null;
   }
 
-  bool existsFile({required withName}) => getFile(withName: withName) != null;
+  bool existsFile({required String withName}) =>
+      getFile(withName: withName) != null;
 
   List<File> getFiles({
     String withExtension = '',
@@ -40,7 +41,7 @@ extension DirectoryUtils on Directory {
           .where((e) => e.path.endsWith(withExtension))
           .toList();
 
-  Future<File> createFile({required withName}) =>
+  Future<File> createFile({required String withName}) =>
       File(join(path, withName)).create(recursive: true);
 
   void formatDartFiles() =>

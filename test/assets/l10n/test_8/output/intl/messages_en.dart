@@ -2,7 +2,7 @@
 // This is a library that provides messages for a en locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
-
+// @dart=2.12
 // Ignore issues from commonly used lints in this file.
 // ignore_for_file:unnecessary_brace_in_string_interps
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
@@ -20,11 +20,9 @@ class MessageLookup extends MessageLookupByLibrary {
   @override
   String get localeName => 'en';
 
-  static m0(date) => "Hello world on ${date}";
-
   @override
   final Map<String, dynamic> messages =
       _notInlinedMessages(_notInlinedMessages);
 
-  static Map<String, dynamic> _notInlinedMessages(_) => {'hello': m0};
+  static Map<String, dynamic> _notInlinedMessages(Object? _) => {};
 }

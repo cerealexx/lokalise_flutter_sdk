@@ -1,7 +1,4 @@
 // ignore_for_file: file_names
-
-library lokalise_flutter_sdk;
-
 import 'dart:io';
 import 'package:lokalise_flutter_sdk/src/generator/generator.dart';
 import 'package:lokalise_flutter_sdk/src/generator/generator_config.dart';

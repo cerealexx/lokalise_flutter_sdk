@@ -24,9 +24,7 @@ import 'package:lokalise_flutter_sdk/src/extensions/directory.dart';
 import 'package:intl_translation/extract_messages.dart';
 import 'package:intl_translation/generate_localized.dart';
 import 'package:intl_translation/src/message_parser.dart';
-import 'package:intl_translation/src/messages/message.dart';
 import 'package:intl_translation/src/messages/literal_string_message.dart';
-import 'package:intl_translation/src/messages/main_message.dart';
 
 class IntlTranslationProxy {
   final MessageExtraction _extraction = MessageExtraction();

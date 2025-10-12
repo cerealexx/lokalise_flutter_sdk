@@ -5,4 +5,10 @@ class LanguageBundle {
   final Map<String, Translation> translations;
 
   LanguageBundle({required this.locale, required this.translations});
+
+  LanguageBundle.empty({required this.locale}) : translations = {};
+
+  bool get isEmpty => translations.isEmpty;
+
+  bool get isNotEmpty => translations.isNotEmpty;
 }

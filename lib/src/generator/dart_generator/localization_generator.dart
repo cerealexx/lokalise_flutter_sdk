@@ -96,7 +96,7 @@ class LocalizationGenerator {
 
       class $className {
         $className._internal() {
-          _initializeMappedTranslations();
+         _initializeMappedTranslations();
         }
 
         late final Map<String, dynamic> _translations;
@@ -145,22 +145,22 @@ class LocalizationGenerator {
           return instance!;
         }
 
-        ${_labels.map((l) => l.generateDartGetter()).join()}
-      }
+      ${_labels.map((l) => l.generateDartGetter()).join()}
+    }
 
-      class _AppLocalizationDelegate extends LocalizationsDelegate<$className> {
-        const _AppLocalizationDelegate();
+    class _AppLocalizationDelegate extends LocalizationsDelegate<$className> {
+      const _AppLocalizationDelegate();
 
-        @override
-        bool isSupported(Locale locale) => $className.supportedLocales.any(
-            (supportedLocale) => supportedLocale.languageCode == locale.languageCode);
+      @override
+      bool isSupported(Locale locale) => $className.supportedLocales.any(
+          (supportedLocale) => supportedLocale.languageCode == locale.languageCode);
 
-        @override
-        Future<$className> load(Locale locale) => $className.load(locale);
+      @override
+      Future<$className> load(Locale locale) => $className.load(locale);
 
-        @override
-        bool shouldReload(_AppLocalizationDelegate old) => false;
-      }
+      @override
+      bool shouldReload(_AppLocalizationDelegate old) => false;
+    }
     """;
   }
 

@@ -11,7 +11,7 @@ class ValidationError<T> {
     this.expectedType,
   });
 
-  get message {
+  String get message {
     late String message;
     if (expectedType != null) {
       message =

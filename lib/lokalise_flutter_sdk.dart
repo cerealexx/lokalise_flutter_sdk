@@ -1,5 +1,3 @@
-library lokalise_flutter_sdk;
-
 import 'dart:ui';
 import 'package:lokalise_flutter_sdk/src/ota/domain/models/update_result.dart';
 import 'package:lokalise_flutter_sdk/src/ota/helpers/in_memory_initializer.dart';

@@ -26,16 +26,16 @@ class Test {
   static const List<Locale> supportedLocales = [
     Locale.fromSubtags(languageCode: 'en'),
     Locale.fromSubtags(languageCode: 'es'),
-    Locale.fromSubtags(languageCode: 'it')
+    Locale.fromSubtags(languageCode: 'it'),
   ];
 
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   static final Map<String, List<String>> _metadata = {'hello': [], 'title': []};
 
@@ -55,29 +55,21 @@ class Test {
 
   static Test of(BuildContext context) {
     final instance = Localizations.of<Test>(context, Test);
-    assert(instance != null,
-        'No instance of Test present in the widget tree. Did you add Test.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of Test present in the widget tree. Did you add Test.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
   /// `Hello world`
   String get hello {
-    return Intl.message(
-      'Hello world',
-      name: 'hello',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Hello world', name: 'hello', desc: '', args: []);
   }
 
   /// `Title`
   String get title {
-    return Intl.message(
-      'Title',
-      name: 'title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Title', name: 'title', desc: '', args: []);
   }
 }
 
@@ -86,7 +78,8 @@ class _AppLocalizationDelegate extends LocalizationsDelegate<Test> {
 
   @override
   bool isSupported(Locale locale) => Test.supportedLocales.any(
-      (supportedLocale) => supportedLocale.languageCode == locale.languageCode);
+    (supportedLocale) => supportedLocale.languageCode == locale.languageCode,
+  );
 
   @override
   Future<Test> load(Locale locale) => Test.load(locale);

@@ -4,7 +4,9 @@ import 'package:dart_style/dart_style.dart' show DartFormatter;
 import 'package:path/path.dart' as path;
 
 extension DartFile on File {
-  static final _dartFormatter = DartFormatter();
+  static final _dartFormatter = DartFormatter(
+    languageVersion: DartFormatter.latestLanguageVersion,
+  );
 
   void writeDart({required String content}) =>
       writeAsStringSync(_dartFormatter.format(content));

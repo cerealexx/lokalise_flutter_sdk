@@ -26,16 +26,16 @@ class Lt {
     Locale.fromSubtags(languageCode: 'it'),
     Locale.fromSubtags(languageCode: 'es'),
     Locale.fromSubtags(languageCode: 'ar'),
-    Locale.fromSubtags(languageCode: 'en')
+    Locale.fromSubtags(languageCode: 'en'),
   ];
 
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   static final Map<String, List<String>> _metadata = {'hello': [], 'title': []};
 
@@ -55,29 +55,21 @@ class Lt {
 
   static Lt of(BuildContext context) {
     final instance = Localizations.of<Lt>(context, Lt);
-    assert(instance != null,
-        'No instance of Lt present in the widget tree. Did you add Lt.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of Lt present in the widget tree. Did you add Lt.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
   /// `Hello world`
   String get hello {
-    return Intl.message(
-      'Hello world',
-      name: 'hello',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Hello world', name: 'hello', desc: '', args: []);
   }
 
   /// `Title`
   String get title {
-    return Intl.message(
-      'Title',
-      name: 'title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Title', name: 'title', desc: '', args: []);
   }
 }
 
@@ -86,7 +78,8 @@ class _AppLocalizationDelegate extends LocalizationsDelegate<Lt> {
 
   @override
   bool isSupported(Locale locale) => Lt.supportedLocales.any(
-      (supportedLocale) => supportedLocale.languageCode == locale.languageCode);
+    (supportedLocale) => supportedLocale.languageCode == locale.languageCode,
+  );
 
   @override
   Future<Lt> load(Locale locale) => Lt.load(locale);
