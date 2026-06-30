@@ -1,6 +1,6 @@
 ## 3.0.0
 ### Breaking Changes
-- The SDK now requires `package_info_plus 9.0.0`
+- The SDK now requires `package_info_plus 10.2.0`
 - The SDK now requires `dart_style 3.0.0`
 - The SDK now requires `petitparser 7.0.0`
 

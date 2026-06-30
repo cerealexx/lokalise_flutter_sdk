@@ -18,7 +18,11 @@ import 'package:lokalise_flutter_sdk/lokalise_flutter_sdk.dart';
 import 'intl/messages_all.dart';
 
 class Test {
-  Test._internal();
+  Test._internal() {
+    _initializeMappedTranslations();
+  }
+
+  late final Map<String, dynamic> _translations;
 
   static const LocalizationsDelegate<Test> delegate =
       _AppLocalizationDelegate();
@@ -38,6 +42,14 @@ class Test {
       ];
 
   static final Map<String, List<String>> _metadata = {'hello': [], 'title': []};
+
+  void _initializeMappedTranslations() {
+    _translations = {'hello': () => hello, 'title': () => title};
+  }
+
+  dynamic getByKey(String key) {
+    return _translations[key]?.call() ?? '';
+  }
 
   static Future<Test> load(Locale locale) {
     final name = (locale.countryCode?.isEmpty ?? false)

@@ -18,24 +18,36 @@ import 'package:lokalise_flutter_sdk/lokalise_flutter_sdk.dart';
 import 'intl/messages_all.dart';
 
 class Lt {
-  Lt._internal();
+  Lt._internal() {
+    _initializeMappedTranslations();
+  }
+
+  late final Map<String, dynamic> _translations;
 
   static const LocalizationsDelegate<Lt> delegate = _AppLocalizationDelegate();
 
   static const List<Locale> supportedLocales = [
     Locale.fromSubtags(languageCode: 'en'),
-    Locale.fromSubtags(languageCode: 'es')
+    Locale.fromSubtags(languageCode: 'es'),
   ];
 
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   static final Map<String, List<String>> _metadata = {'hello': [], 'title': []};
+
+  void _initializeMappedTranslations() {
+    _translations = {'hello': () => hello, 'title': () => title};
+  }
+
+  dynamic getByKey(String key) {
+    return _translations[key]?.call() ?? '';
+  }
 
   static Future<Lt> load(Locale locale) {
     final name = (locale.countryCode?.isEmpty ?? false)
@@ -53,8 +65,10 @@ class Lt {
 
   static Lt of(BuildContext context) {
     final instance = Localizations.of<Lt>(context, Lt);
-    assert(instance != null,
-        'No instance of Lt present in the widget tree. Did you add Lt.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of Lt present in the widget tree. Did you add Lt.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -70,12 +84,7 @@ class Lt {
 
   /// `Title`
   String get title {
-    return Intl.message(
-      'Title',
-      name: 'title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Title', name: 'title', desc: '', args: []);
   }
 }
 
@@ -84,7 +93,8 @@ class _AppLocalizationDelegate extends LocalizationsDelegate<Lt> {
 
   @override
   bool isSupported(Locale locale) => Lt.supportedLocales.any(
-      (supportedLocale) => supportedLocale.languageCode == locale.languageCode);
+    (supportedLocale) => supportedLocale.languageCode == locale.languageCode,
+  );
 
   @override
   Future<Lt> load(Locale locale) => Lt.load(locale);
