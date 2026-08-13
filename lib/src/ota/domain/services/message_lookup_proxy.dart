@@ -33,7 +33,13 @@ class MessageLookupProxy implements MessageLookup {
   }
 
   @override
-  void addLocale(String localeName, Function findLocale) {
+  void addLocale(
+    String localeName,
+    covariant MessageLookupByLibrary? Function(String) findLocale,
+  ) {
+    // `covariant` keeps this override valid across the whole intl 0.20.x
+    // range: addLocale declares `Function findLocale` until 0.20.2 and
+    // `MessageLookupByLibrary? Function(String)` from 0.20.3 onwards.
     _messageLookup.addLocale(localeName, findLocale);
   }
 

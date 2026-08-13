@@ -1,3 +1,8 @@
+## 3.1.1
+### Fixes
+- Fixed a static analysis error with `intl 0.20.3`.
+
+
 ## 3.0.0
 ### Breaking Changes
 - The SDK now requires `package_info_plus 10.2.0`

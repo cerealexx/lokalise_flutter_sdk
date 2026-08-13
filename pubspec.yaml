@@ -3,7 +3,7 @@ description: >-
   Lokalise Flutter SDK over-the-air translations updates. 
   This package provides new translations from lokalise.com
   without a new app release.
-version: 3.0.0
+version: 3.1.1
 homepage: https://developers.lokalise.com/docs/flutter-sdk
 
 
