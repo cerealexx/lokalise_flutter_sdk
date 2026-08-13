@@ -1,10 +1,13 @@
 import 'dart:io';
 
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lokalise_flutter_sdk/lokalise_flutter_sdk.dart';
 import 'package:lokalise_flutter_sdk/src/extensions/file.dart';
 import 'package:lokalise_flutter_sdk/src/generator/dart_generator/localization_generator.dart';
 
 import '../../../assets/assets_routes.dart';
+import '../../../assets/l10n/test_0/output/l10n.dart' as generated;
 
 void main() {
   group('LocalizationGenerator', () {
@@ -169,6 +172,19 @@ void main() {
         resultFile.readAsStringSync(),
         equals(expected.readAsStringSync()),
       );
+    });
+  });
+
+  group('generated getByKey', () {
+    setUpAll(Lokalise.initMock);
+
+    test('resolves generated getters and falls back for unknown keys',
+        () async {
+      final localization = await generated.Lt.load(const Locale('en'));
+
+      expect(localization.getByKey('hello'), 'Hello world');
+      expect(localization.getByKey('title'), 'Title');
+      expect(localization.getByKey('unknown'), '');
     });
   });
 }

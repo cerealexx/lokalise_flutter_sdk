@@ -1,6 +1,7 @@
 // ignore: implementation_imports
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/message_lookup_by_library.dart';
 import 'package:intl/src/intl_helpers.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/models/bundle.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/models/language_bundle.dart';
@@ -52,9 +53,9 @@ void main() {
   group('MessageLookupProxy - addLocale', () {
     test('should redirect call', () {
       const locale = 'es';
-      function() {}
-      proxy.addLocale(locale, function);
-      verify(mockMessageLookup.addLocale(locale, function));
+      MessageLookupByLibrary? findLocale(String localeName) => null;
+      proxy.addLocale(locale, findLocale);
+      verify(mockMessageLookup.addLocale(locale, findLocale));
     });
   });
 
