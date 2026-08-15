@@ -1,0 +1,9 @@
+{
+    "@@locale": "es",
+    "literal": "Texto plano",
+    "ordinary": "Hola {name}",
+    "reordered": "Segundo {second}, primero {first}",
+    "plural": "{count, plural, =0 {Ningún elemento} =1 {Un elemento} other {{count} elementos}}",
+    "select": "{choice, select, short {Etiqueta corta} long {Etiqueta larga} other {Otra etiqueta}}",
+    "formatted": "Total {amount}"
+}

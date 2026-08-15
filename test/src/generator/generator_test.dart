@@ -16,6 +16,7 @@ import '../../assets/l10n/test_6/config.dart';
 import '../../assets/l10n/test_7/config.dart';
 import '../../assets/l10n/test_8/config.dart';
 import '../../assets/l10n/test_9/config.dart';
+import '../../assets/l10n/test_10/config.dart';
 
 /// Please read test/assets/l10n/readme.md to learn about this test file.
 void main() {
@@ -124,6 +125,10 @@ void main() {
     test(
       'Test 9',
       () async => await executeTestCase(generatorTest9Config),
+    );
+    test(
+      'Test 10',
+      () async => await executeTestCase(generatorTest10Config),
     );
   });
 }
