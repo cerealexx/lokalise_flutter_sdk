@@ -39,10 +39,24 @@ class Lt {
         GlobalWidgetsLocalizations.delegate,
       ];
 
-  static final Map<String, List<String>> _metadata = {'hello': [], 'title': []};
+  static final Map<String, List<String>> _metadata = {
+    'literal': [],
+    'ordinary': ['name'],
+    'reordered': ['first', 'second'],
+    'plural': ['count'],
+    'select': ['choice'],
+    'formatted': ['amount'],
+  };
 
   void _initializeMappedTranslations() {
-    _translations = {'hello': () => hello, 'title': () => title};
+    _translations = {
+      'literal': () => literal,
+      'ordinary': () => ordinary,
+      'reordered': () => reordered,
+      'plural': () => plural,
+      'select': () => select,
+      'formatted': () => formatted,
+    };
   }
 
   String getByKey(String key, {Map<String, Object> arguments = const {}}) {
@@ -92,19 +106,68 @@ class Lt {
     return instance!;
   }
 
-  /// `Hello world`
-  String get hello {
+  /// `Plain text`
+  String get literal {
+    return Intl.message('Plain text', name: 'literal', desc: '', args: []);
+  }
+
+  /// `Hello {name}`
+  String ordinary(Object name) {
     return Intl.message(
-      'Hello world',
-      name: 'hello',
-      desc: 'Simple hello world',
-      args: [],
+      'Hello $name',
+      name: 'ordinary',
+      desc: '',
+      args: [name],
     );
   }
 
-  /// `Title`
-  String get title {
-    return Intl.message('Title', name: 'title', desc: '', args: []);
+  /// `First {first}, second {second}`
+  String reordered(Object first, Object second) {
+    return Intl.message(
+      'First $first, second $second',
+      name: 'reordered',
+      desc: '',
+      args: [first, second],
+    );
+  }
+
+  /// `{count, plural, =0 {No items} =1 {One item} other {{count} items}}`
+  String plural(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No items',
+      one: 'One item',
+      other: '$count items',
+      name: 'plural',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{choice, select, short {Short label} long {Long label} other {Other label}}`
+  String select(Object choice) {
+    return Intl.select(
+      choice,
+      {'short': 'Short label', 'long': 'Long label', 'other': 'Other label'},
+      name: 'select',
+      desc: '',
+      args: [choice],
+    );
+  }
+
+  /// `Total {amount}`
+  String formatted(double amount) {
+    final NumberFormat amountNumberFormat = NumberFormat.decimalPattern(
+      Intl.getCurrentLocale(),
+    );
+    final String amountString = amountNumberFormat.format(amount);
+
+    return Intl.message(
+      'Total $amountString',
+      name: 'formatted',
+      desc: '',
+      args: [amountString],
+    );
   }
 }
 
