@@ -47,8 +47,28 @@ class Lt {
     _translations = {'hello': () => hello};
   }
 
-  dynamic getByKey(String key) {
-    return _translations[key]?.call() ?? '';
+  String getByKey(String key, {Map<String, Object> arguments = const {}}) {
+    final translation = _translations[key]?.call();
+    final argumentNames = _metadata[key];
+    if (translation == null || argumentNames == null) {
+      return '';
+    }
+    if (argumentNames.isEmpty) {
+      return translation is String ? translation : '';
+    }
+    if (argumentNames.any((name) => !arguments.containsKey(name))) {
+      return '';
+    }
+
+    try {
+      final value = Function.apply(
+        translation as Function,
+        argumentNames.map((name) => arguments[name]).toList(),
+      );
+      return value is String ? value : '';
+    } catch (_) {
+      return '';
+    }
   }
 
   static Future<Lt> load(Locale locale) {

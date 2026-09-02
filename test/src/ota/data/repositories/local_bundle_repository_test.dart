@@ -81,7 +81,7 @@ void main() {
   });
 
   group('LocalBundleRepository - getBundle', () {
-    test('exists', () {
+    test('exists', () async {
       // Given
       final entity = BundleEntity(
         projectId: 'test',
@@ -89,10 +89,10 @@ void main() {
         appVersion: '2',
         translations: {},
       );
-      when(persistenceMock.get()).thenReturn(entity);
+      when(persistenceMock.get()).thenAnswer((_) async => entity);
 
       // When
-      final result = localRepo.getBundle();
+      final result = await localRepo.getBundle();
 
       // Then
       expect(result, isNotNull);
@@ -102,12 +102,12 @@ void main() {
       expect(result.languageBundles, isEmpty);
     });
 
-    test('not exists', () {
+    test('not exists', () async {
       // Given
-      when(persistenceMock.get()).thenReturn(null);
+      when(persistenceMock.get()).thenAnswer((_) async => null);
 
       // When
-      final result = localRepo.getBundle();
+      final result = await localRepo.getBundle();
 
       // Then
       expect(result, isNull);

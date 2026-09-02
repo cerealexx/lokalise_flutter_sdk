@@ -19,7 +19,7 @@ class GetLocalBundleUseCase {
     Bundle? bundle;
 
     try {
-      bundle = _localDS.getBundle();
+      bundle = await _localDS.getBundle();
 
       if (bundle != null) {
         if (bundle.projectId != projectId || bundle.appVersion != appVersion) {

@@ -1,4 +1,4 @@
-import 'package:archive/archive_io.dart';
+import 'package:archive/archive.dart';
 import 'package:http/http.dart';
 import 'package:lokalise_flutter_sdk/src/ota/data/api/clients/bundle_downloader/response/bundle_downloader_response.dart';
 import 'package:lokalise_flutter_sdk/src/ota/data/api/exceptions/api_exception.dart';

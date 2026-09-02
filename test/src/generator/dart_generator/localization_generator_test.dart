@@ -8,6 +8,7 @@ import 'package:lokalise_flutter_sdk/src/generator/dart_generator/localization_g
 
 import '../../../assets/assets_routes.dart';
 import '../../../assets/l10n/test_0/output/l10n.dart' as generated;
+import '../../../assets/l10n/test_10/output/l10n.dart' as argument_generated;
 
 void main() {
   group('LocalizationGenerator', () {
@@ -176,7 +177,7 @@ void main() {
   });
 
   group('generated getByKey', () {
-    setUpAll(Lokalise.initMock);
+    setUp(Lokalise.initMock);
 
     test('resolves generated getters and falls back for unknown keys',
         () async {
@@ -185,6 +186,91 @@ void main() {
       expect(localization.getByKey('hello'), 'Hello world');
       expect(localization.getByKey('title'), 'Title');
       expect(localization.getByKey('unknown'), '');
+    });
+
+    test('resolves named arguments in generated parameter order', () async {
+      final localization = await argument_generated.Lt.load(const Locale('en'));
+
+      expect(
+        localization.getByKey(
+          'ordinary',
+          arguments: {'name': 'Alex', 'ignored': 'value'},
+        ),
+        'Hello Alex',
+      );
+      expect(
+        localization.getByKey(
+          'reordered',
+          arguments: {'second': 'two', 'first': 'one'},
+        ),
+        'First one, second two',
+      );
+    });
+
+    test('returns an empty string for invalid argument lookup', () async {
+      final localization = await argument_generated.Lt.load(const Locale('en'));
+
+      expect(localization.getByKey('ordinary'), '');
+      expect(
+        localization.getByKey(
+          'plural',
+          arguments: {'count': 'not-a-number'},
+        ),
+        '',
+      );
+      expect(localization.getByKey('unknown'), '');
+    });
+
+    test('preserves translated placeholder ordering', () async {
+      final localization = await argument_generated.Lt.load(const Locale('es'));
+
+      expect(
+        localization.getByKey(
+          'reordered',
+          arguments: {'first': 'uno', 'second': 'dos'},
+        ),
+        'Segundo dos, primero uno',
+      );
+    });
+
+    test('preserves plural, select, and formatting behavior', () async {
+      final localization = await argument_generated.Lt.load(const Locale('en'));
+
+      expect(
+        localization.getByKey('plural', arguments: {'count': 0}),
+        'No items',
+      );
+      expect(
+        localization.getByKey('plural', arguments: {'count': 3}),
+        '3 items',
+      );
+      expect(
+        localization.getByKey('select', arguments: {'choice': 'short'}),
+        'Short label',
+      );
+      expect(
+        localization.getByKey('formatted', arguments: {'amount': 1234.5}),
+        'Total 1,234.5',
+      );
+    });
+
+    test('preserves parameterized Lokalise OTA lookup', () async {
+      await Lokalise.initMock(
+        cachedBundleTranslations: {
+          const Locale('en'): {
+            'reordered': 'OTA {second} before {first}',
+          },
+        },
+      );
+      final localization = await argument_generated.Lt.load(const Locale('en'));
+
+      expect(
+        localization.getByKey(
+          'reordered',
+          arguments: {'first': 'one', 'second': 'two'},
+        ),
+        'OTA two before one',
+      );
     });
   });
 }

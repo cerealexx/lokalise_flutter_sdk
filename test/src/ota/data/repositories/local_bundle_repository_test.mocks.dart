@@ -33,6 +33,15 @@ class MockBundlePersistence extends _i1.Mock implements _i2.BundlePersistence {
   }
 
   @override
+  _i3.Future<_i4.BundleEntity?> get() => (super.noSuchMethod(
+        Invocation.method(
+          #get,
+          [],
+        ),
+        returnValue: _i3.Future<_i4.BundleEntity?>.value(),
+      ) as _i3.Future<_i4.BundleEntity?>);
+
+  @override
   _i3.Future<bool> save({required _i4.BundleEntity? bundleEntity}) =>
       (super.noSuchMethod(
         Invocation.method(

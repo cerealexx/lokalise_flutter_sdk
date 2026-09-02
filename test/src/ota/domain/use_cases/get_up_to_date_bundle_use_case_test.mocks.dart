@@ -61,6 +61,15 @@ class MockLocalBundleDataSource extends _i1.Mock
   }
 
   @override
+  _i3.Future<_i4.Bundle?> getBundle() => (super.noSuchMethod(
+        Invocation.method(
+          #getBundle,
+          [],
+        ),
+        returnValue: _i3.Future<_i4.Bundle?>.value(),
+      ) as _i3.Future<_i4.Bundle?>);
+
+  @override
   _i3.Future<bool> saveBundle({required _i4.Bundle? bundle}) =>
       (super.noSuchMethod(
         Invocation.method(

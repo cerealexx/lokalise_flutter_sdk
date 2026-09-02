@@ -1,4 +1,4 @@
-import 'package:archive/archive_io.dart';
+import 'package:archive/archive.dart';
 import 'package:lokalise_flutter_sdk/src/ota/data/api/clients/ota/response/error/ota_error_response.dart';
 import 'package:lokalise_flutter_sdk/src/ota/data/api/exceptions/api_exception.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/exceptions/validation_exception.dart';

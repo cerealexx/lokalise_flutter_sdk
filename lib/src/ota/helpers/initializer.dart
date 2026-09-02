@@ -1,6 +1,6 @@
 // ignore: implementation_imports
 import 'package:intl/src/intl_helpers.dart';
-import 'package:archive/archive_io.dart';
+import 'package:archive/archive.dart';
 import 'package:http/http.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/data_source/local_bundle_data_source.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/data_source/remote_bundle_data_source.dart';
@@ -15,6 +15,7 @@ import 'package:lokalise_flutter_sdk/src/ota/data/api/clients/bundle_downloader/
 import 'package:lokalise_flutter_sdk/src/ota/data/api/clients/ota/ota_client.dart';
 import 'package:lokalise_flutter_sdk/src/ota/data/api/ota_api.dart';
 import 'package:lokalise_flutter_sdk/src/ota/data/persistence/bundle_persistence.dart';
+import 'package:lokalise_flutter_sdk/src/ota/data/persistence/bundle_document_store_factory.dart';
 import 'package:lokalise_flutter_sdk/src/ota/data/repositories/local_bundle_repository.dart';
 import 'package:lokalise_flutter_sdk/src/ota/data/repositories/remote_bundle_repository.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/models/credentials.dart';
@@ -72,6 +73,7 @@ class Initializer {
       LocalBundleRepository(
         persistence: BundlePersistence(
           sharedPreferences: await SharedPreferences.getInstance(),
+          documentStore: createBundleDocumentStore(),
         ),
       );
 

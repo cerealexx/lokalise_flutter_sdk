@@ -14,7 +14,7 @@ void main() {
 
       // Then
       expect(res, true);
-      expect(localRepo.getBundle(), isNull);
+      expect(await localRepo.getBundle(), isNull);
     });
 
     test('bundle not exists ', () async {
@@ -26,7 +26,7 @@ void main() {
 
       // Then
       expect(res, false);
-      expect(localRepo.getBundle(), isNull);
+      expect(await localRepo.getBundle(), isNull);
     });
   });
 
@@ -46,7 +46,7 @@ void main() {
 
       // Then
       expect(res, true);
-      expect(localRepo.getBundle(), bundle);
+      expect(await localRepo.getBundle(), bundle);
     });
 
     test('on not empty', () async {
@@ -70,12 +70,12 @@ void main() {
 
       // Then
       expect(res, true);
-      expect(localRepo.getBundle(), bundle2);
+      expect(await localRepo.getBundle(), bundle2);
     });
   });
 
   group('InMemoryLocalBundleRepository - getBundle', () {
-    test('exists', () {
+    test('exists', () async {
       // Given
       final bundle = Bundle(
         projectId: 'test',
@@ -86,18 +86,18 @@ void main() {
       final localRepo = InMemoryLocalBundleRepository(bundle: bundle);
 
       // When
-      final result = localRepo.getBundle();
+      final result = await localRepo.getBundle();
 
       // Then
       expect(result, bundle);
     });
 
-    test('not exists', () {
+    test('not exists', () async {
       // Given
       final localRepo = InMemoryLocalBundleRepository(bundle: null);
 
       // When
-      final result = localRepo.getBundle();
+      final result = await localRepo.getBundle();
 
       // Then
       expect(result, isNull);

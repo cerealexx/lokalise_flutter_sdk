@@ -1,0 +1,40 @@
+{
+    "@@locale": "en",
+    "literal": "Plain text",
+    "ordinary": "Hello {name}",
+    "@ordinary": {
+        "placeholders": {
+            "name": {}
+        }
+    },
+    "reordered": "First {first}, second {second}",
+    "@reordered": {
+        "placeholders": {
+            "first": {},
+            "second": {}
+        }
+    },
+    "plural": "{count, plural, =0 {No items} =1 {One item} other {{count} items}}",
+    "@plural": {
+        "placeholders": {
+            "count": {
+                "type": "num"
+            }
+        }
+    },
+    "select": "{choice, select, short {Short label} long {Long label} other {Other label}}",
+    "@select": {
+        "placeholders": {
+            "choice": {}
+        }
+    },
+    "formatted": "Total {amount}",
+    "@formatted": {
+        "placeholders": {
+            "amount": {
+                "type": "double",
+                "format": "decimalPattern"
+            }
+        }
+    }
+}
