@@ -165,7 +165,7 @@ void main() {
 
       when(remoteDataSource.getBundle(getUpToDateBundleDto: dto))
           .thenAnswer((realInvocation) => Future.value(null));
-      when(localDataSource.getBundle()).thenReturn(localBundle);
+      when(localDataSource.getBundle()).thenAnswer((_) async => localBundle);
 
       // When
       final res = await useCase.getBundle(dto: dto);
@@ -202,7 +202,7 @@ void main() {
 
       when(remoteDataSource.getBundle(getUpToDateBundleDto: dto))
           .thenAnswer((realInvocation) => Future.value(bundle));
-      when(localDataSource.getBundle()).thenReturn(localBundle);
+      when(localDataSource.getBundle()).thenAnswer((_) async => localBundle);
 
       // When
       final res = await useCase.getBundle(dto: dto);

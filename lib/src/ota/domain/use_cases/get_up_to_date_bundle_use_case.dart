@@ -29,7 +29,7 @@ class GetUpToDateBundleUseCase {
           bundle.translationVersion != dto.translationVersion) {
         await _localDS.saveBundle(bundle: bundle);
       } else {
-        bundle = _localDS.getBundle();
+        bundle = await _localDS.getBundle();
       }
     } on BundleNotFoundException {
       await _localDS.removeBundle();

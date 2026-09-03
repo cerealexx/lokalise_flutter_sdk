@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:lokalise_flutter_sdk/src/constants.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/models/json_serializable.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'dart:io';
 
 class DeviceInfo implements JsonSerializable {
   final PackageInfo _packageInfo;
@@ -25,7 +24,8 @@ class DeviceInfo implements JsonSerializable {
 
   bool get isWeb => kIsWeb;
 
-  String get platform => isWeb ? 'web' : Platform.operatingSystem;
+  String get platform =>
+      isWeb ? 'web' : defaultTargetPlatform.name.toLowerCase();
 
   String get lokaliseSdkVersion => kLokaliseSdkVersion;
 

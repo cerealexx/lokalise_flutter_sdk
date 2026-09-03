@@ -10,8 +10,8 @@ class LocalBundleRepository implements LocalBundleDataSource {
       : _persistence = persistence;
 
   @override
-  Bundle? getBundle() {
-    final bundleEntity = _persistence.get();
+  Future<Bundle?> getBundle() async {
+    final bundleEntity = await _persistence.get();
     if (bundleEntity == null) {
       return null;
     }

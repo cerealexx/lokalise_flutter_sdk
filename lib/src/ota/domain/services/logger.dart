@@ -1,8 +1,9 @@
-import 'dart:io';
 import 'package:logger/logger.dart' as package;
 import 'package:lokalise_flutter_sdk/src/constants.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/models/json_serializable.dart';
+import 'package:lokalise_flutter_sdk/src/ota/domain/services/console_support.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/services/device_info.dart';
+import 'package:lokalise_flutter_sdk/src/ota/domain/services/socket_exception_details.dart';
 
 class Logger {
   final DeviceInfo _deviceInfo;
@@ -14,11 +15,11 @@ class Logger {
             package.Logger(
               printer: package.PrettyPrinter(
                 methodCount: 0,
-                colors: deviceInfo.isWeb ? true : stdout.supportsAnsiEscapes,
+                colors: deviceInfo.isWeb ? true : consoleSupportsAnsiEscapes,
                 lineLength: deviceInfo.isWeb
                     ? kLoggerDefaultLineLength
-                    : (stdout.hasTerminal
-                        ? stdout.terminalColumns
+                    : (consoleHasTerminal
+                        ? consoleTerminalColumns
                         : kLoggerDefaultLineLength),
               ),
               filter: package.DevelopmentFilter(),
@@ -36,11 +37,9 @@ class Logger {
     if (exception is JsonSerializable) {
       return (exception as JsonSerializable).toJson();
     }
-    if (exception is SocketException) {
-      return {
-        'message': exception.message,
-        'os_error': exception.osError,
-      };
+    final socketDetails = socketExceptionDetails(exception);
+    if (socketDetails != null) {
+      return socketDetails;
     }
 
     return {'message': exception.toString()};

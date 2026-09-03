@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/src/intl_helpers.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/models/bundle.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/models/credentials.dart';
+import 'package:lokalise_flutter_sdk/src/ota/domain/exceptions/lokalise_exception.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/services/message_lookup_proxy.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/use_cases/get_local_bundle_use_case.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/use_cases/get_up_to_date_bundle_use_case.dart';
@@ -143,6 +144,22 @@ void main() {
       verify(mockMessageLookupProxy.bundle = newBundle).called(1);
       expect(res.oldbundleVersion, equals(cachedBundleVersion));
       expect(res.newBundleVersion, equals(newBundle.translationVersion));
+    });
+
+    test('offline failure leaves the already loaded bundle active', () async {
+      const cachedBundleVersion = 10;
+      when(mockMessageLookupProxy.translationVersion)
+          .thenReturn(cachedBundleVersion);
+      when(mockGetUpToDateBundleUseCase.getBundle(dto: anyNamed('dto')))
+          .thenAnswer((_) async => throw LokaliseException('offline'));
+
+      await expectLater(
+        lokalise.update(),
+        throwsA(isA<LokaliseException>()),
+      );
+
+      verifyNever(mockMessageLookupProxy.bundle = any);
+      expect(mockMessageLookupProxy.translationVersion, cachedBundleVersion);
     });
   });
 

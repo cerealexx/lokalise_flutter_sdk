@@ -1,4 +1,4 @@
-import 'package:archive/archive_io.dart';
+import 'package:archive/archive.dart';
 
 class BundleResponse {
   final Archive bundle;

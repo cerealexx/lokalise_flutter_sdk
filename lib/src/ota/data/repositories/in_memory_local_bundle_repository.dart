@@ -8,7 +8,7 @@ class InMemoryLocalBundleRepository implements LocalBundleDataSource {
       : _localBundle = bundle;
 
   @override
-  Bundle? getBundle() => _localBundle;
+  Future<Bundle?> getBundle() async => _localBundle;
 
   @override
   Future<bool> removeBundle() {

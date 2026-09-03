@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:archive/archive_io.dart';
+import 'package:archive/archive.dart';
 import 'package:lokalise_flutter_sdk/src/ota/domain/data_source/remote_bundle_data_source.dart';
 import 'package:path/path.dart' as path;
 import 'package:lokalise_flutter_sdk/src/ota/data/api/ota_api.dart';

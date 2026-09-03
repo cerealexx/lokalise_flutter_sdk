@@ -27,7 +27,8 @@ void main() {
     test('localDataSource.getBundle throw exception', () async {
       // Given
       final exception = Exception();
-      when(localDataSource.getBundle()).thenThrow(exception);
+      when(localDataSource.getBundle())
+          .thenAnswer((_) async => throw exception);
 
       // When
       const projectId = 'test-project';
@@ -47,7 +48,7 @@ void main() {
 
     test('localDataSource.getBundle returns null', () async {
       // Given
-      when(localDataSource.getBundle()).thenReturn(null);
+      when(localDataSource.getBundle()).thenAnswer((_) async => null);
 
       // When
       const projectId = 'test-project';
@@ -74,7 +75,7 @@ void main() {
         appVersion: appVersion,
         languageBundles: [],
       );
-      when(localDataSource.getBundle()).thenReturn(bundle);
+      when(localDataSource.getBundle()).thenAnswer((_) async => bundle);
       final exception = Exception();
       when(localDataSource.removeBundle()).thenThrow(exception);
 
@@ -102,7 +103,7 @@ void main() {
         appVersion: appVersion,
         languageBundles: [],
       );
-      when(localDataSource.getBundle()).thenReturn(bundle);
+      when(localDataSource.getBundle()).thenAnswer((_) async => bundle);
       when(localDataSource.removeBundle())
           .thenAnswer((_) => Future.value(true));
 
@@ -130,7 +131,7 @@ void main() {
         appVersion: 'another',
         languageBundles: [],
       );
-      when(localDataSource.getBundle()).thenReturn(bundle);
+      when(localDataSource.getBundle()).thenAnswer((_) async => bundle);
       when(localDataSource.removeBundle())
           .thenAnswer((_) => Future.value(true));
 
@@ -159,7 +160,7 @@ void main() {
         appVersion: appVersion,
         languageBundles: [],
       );
-      when(localDataSource.getBundle()).thenReturn(bundle);
+      when(localDataSource.getBundle()).thenAnswer((_) async => bundle);
       when(localDataSource.removeBundle())
           .thenAnswer((_) => Future.value(true));
 
